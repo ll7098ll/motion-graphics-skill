@@ -12,4 +12,4 @@ if (fs.existsSync(chromePath)) {
 
 Config.setVideoImageFormat('jpeg');
 Config.setChromiumOpenGlRenderer('angle');
-Config.setConcurrency(4);
+Config.setConcurrency(2);

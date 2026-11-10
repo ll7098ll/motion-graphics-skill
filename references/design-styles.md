@@ -69,15 +69,16 @@ Choose the visual language that authentically communicates the brand's essence. 
 
 ---
 
-## 6. Cinematic Aerodynamic & Mobility (Korean Air / Automotive)
+## 6. Cinematic Aerodynamic & Mobility (Korean Air / Flagship Aviation)
 
-- **Best For**: Airlines, aerospace, electric vehicles, global logistics, architectural civil engineering.
-- **Palette**: Horizon Sky Blue (`#0077C8`), Deep Maritime Navy (`#040B18`), National Accent (`#C8102E`), Crisp White.
-- **Typography**: Cinzel, Eurostile, Inter Bold, Aviation Monospace.
+- **Best For**: Flagship airlines, aerospace, luxury hospitality travel, global mobility networks.
+- **Palette**: Korean Air Sky Blue (`#57BBEB` / `#53AAE2`), Pure Cloud White (`#FFFFFF` / `#F2F9FD`), Korean Air Dark Blue (`#051766`), Taegeuk Red Accent (`#E0112B`).
+- **Typography**: Hanjin/Korean Air Humanist Sans (`Inter` / `Plus Jakarta Sans`), Aviation Telemetry Monospace (`JetBrains Mono`).
 - **Key Motion Elements**:
-  - Sweeping Great Circle flight arcs with animated `strokeDashoffset`.
-  - Altitude, velocity, and coordinate HUD telemetry counters.
-  - Stratospheric lighting gradients and horizon curved arcs.
+  - Sweeping S-curve fuselage livery horizon separating Sky Blue (`#57BBEB`) and Cloud White (`#FFFFFF`).
+  - Flowing 3D silk Taegeuk ribbons and Great Circle flight arcs with animated `strokeDashoffset`.
+  - Prestige boarding pass / flight corridor 3D cards with altitude, velocity, and coordinate HUD telemetry counters.
+
 
 ---
 
