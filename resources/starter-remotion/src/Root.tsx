@@ -8,7 +8,7 @@ export const Root: React.FC = () => {
       <Composition
         id="Main"
         component={Main}
-        durationInFrames={30 * 15} // 15s at 30fps or 60fps
+        durationInFrames={60 * 15} // 15 seconds at 60fps = 900 frames
         fps={60}
         width={1920}
         height={1080}
