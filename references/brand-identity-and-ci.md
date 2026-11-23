@@ -1,46 +1,50 @@
-# Brand Identity & CI Animation Guide
+# Brand Identity, Official CI & Hardware Vector Discipline
 
-A brand film must honor and elevate the organization's real, latest corporate identity (CI). Never approximate a logo with generic placeholder shapes, straight stick lines, outdated emblems, or mismatched color themes.
+A brand film must honor and elevate the organization's real, latest corporate identity (CI) and flagship physical assets. **Never approximate an official logo with hand-guessed Bezier curves, substitute system fonts for a bespoke wordmark, or draw flagship hardware (aircraft, vehicles, products) as crude polygons.**
 
 ---
 
-## 0. Brand Asset Acquisition & Latest CI Verification (브랜드 자산 질의 및 최신 CI 검증 프로토콜)
+## 0. Official Vector Acquisition & Visual Audit Protocol (공식 벡터 확보 및 시각 검증 프로토콜)
 
-Before designing the logo animation, verify or research the brand's **latest official visual assets**:
+Before writing a single line of Remotion animation code for a real brand:
 
-1. **질의 체크포인트**:
+1. **질의 체크포인트 (User Asset Check)**:
    - "브랜드의 최신 공식 로고 벡터 파일(SVG)이나 AI/EPS 파일이 있으신가요?"
    - "공식 브랜드 가이드라인(Primary/Secondary 색상 HEX 코드, 전용 서체)이 있으신가요?"
-2. **자산 보유 시 (Assets Available)**:
-   - SVG 파일을 프로젝트 `public/` 또는 `src/components/`로 가져와 `<path>` 엘리먼트들을 레이어별로 분리(Deconstruct)합니다.
-   - 각 패스에 `strokeDashoffset`, `transform: scale()`, `opacity` 등을 매핑하여 물리 기반 리빌을 구현합니다.
-3. **자산 미보유 / '알아서 해줘' 시 (Zero Assets / Autonomous Reconstruction)**:
-   - 공인된 브랜드(대한항공, 토스, 애플, 스트라이프 등)나 공공기관/학교인 경우: 반드시 **가장 최신의 공식 CI 규정(리브랜딩 여부 필히 확인)과 브랜드 컬러 테마**를 리서치하여 정확한 베지어 곡선(`d="M..."`)으로 **직접 벡터 SVG 컴포넌트를 코딩**하고, 배경과 타이포그래피 전체에 브랜드의 시그니처 컬러 테마(60-30-10 비율)를 적용합니다.
-   - 신규 스타트업/가상 브랜드인 경우: 서비스 성격에 맞추어 현대적인 앰블럼과 기하학적 워드마크를 창작하여 제공합니다.
+2. **공식 벡터 직접 확보 (Official SVG Extraction — MANDATORY for Real Brands)**:
+   - 사용자가 제공하지 않은 공인 브랜드(대한항공, 애플, 스트라이프 등)라면, **절대 눈대중으로 로고 패스를 추측해 그리지 마세요.**
+   - 반드시 최신 리브랜딩 여부를 확인하고, 공식 브랜드 사이트·위키미디어 공용(Wikimedia Commons) 등에서 **실제 공식 SVG 벡터 패스(심벌 마크 + 영문/국문 전용 로고타입 글리프 패스)**를 확보해 TypeScript 벡터 상수 모듈(`src/components/*OfficialPaths.ts`)로 정확히 내장하세요.
+3. **하드웨어/피사체 그래픽 정밀 작도 (Photogrammetric / Blueprint Hardware Graphics)**:
+   - 항공기·자동차·제품 등 핵심 그래픽 피사체는 단순 다각형 아이콘으로 대충 그리지 마세요.
+   - 실제 도면(Planform Blueprint)과 실물 사진에서 주요 비례를 계측하고, 3D 원통형 메탈릭 그라데이션·창문·도어·엔진 디테일·공식 리버리(Livery)까지 정밀 SVG로 작도한 뒤, **반드시 단독 래스터화(`rsvg-convert`) 후 `view_file`로 확대 검수**합니다.
+   - 곡선 경로(Great Circle Arc 등)를 따라 이동하는 피사체는 선형 보간 각도가 아닌 **베지어 곡선의 해석적 접선 각도(`Math.atan2(dy, dx) * 180 / Math.PI`)**로 정렬합니다.
 
 ---
 
-## 1. Case Study: Korean Air (대한항공) 2025 Latest Official CI & Color System
+## 1. Case Study: Korean Air (대한항공) 2025 Latest Official CI & Boeing 787-10 (`HL8515`)
 
-When producing a Korean Air (`대한항공`) brand film, always use the **2025 Latest Official CI** (unveiled March 11, 2025, developed with Lippincott, Dalton Maag, and Sandoll):
+When producing a Korean Air (`대한항공`) brand film, always use the **2025 Latest Official CI** (unveiled March 11, 2025, designed with Lippincott, Dalton Maag, and Sandoll):
 
 ### A. 2025 Official Korean Air Color Theme (컬러 테마)
 - **60% Dominant Sky & Fuselage Canvas**:
   - **Korean Air Light Blue / Metallic Sky Blue (대한항공 라이트블루 / 메탈릭 스카이블루)**: `#57BBEB` (RGB `87, 187, 235`) / `#53AAE2` (Bespoke AkzoNobel mica metallic aircraft finish)
-  - **Pure Cloud White & Porcelain Mist (운백색/도자 백색)**: `#FFFFFF`, `#F4FAFE`, `#E4F3FB` (Aircraft lower fuselage separated from the sky-blue upper dome by a smooth, cheatline-free S-curve transition)
+  - **Pure Cloud White & Porcelain Mist (운백색 / 기체 하단)**: `#FFFFFF`, `#F4FAFE`, `#E4F3FB` (Aircraft lower fuselage separated from the sky-blue upper dome by a smooth, cheatline-free S-curve transition)
 - **30% Primary CI & Typography Color**:
-  - **Korean Air Dark Blue (대한항공 다크 블루 / 2025 CI 단색 주조색)**: `#051766` (RGB `5, 23, 102`) — Used exclusively for the **2025 monochrome Sangmo Ribbon Line Taegeuk symbol**, the **`KOREAN AIR` / `KOREAN` / `대한항공` logotype**, and primary display typography.
-- **10% 3D Motif Accent**:
-  - **Korean Air Royal Sky Blue & 3D Silk Motif**: `#0064B5` / `#57BBEB` (with subtle `#E0112B` Korean Air Red reserved only as a background 3D silk ribbon highlight, never inside the monochrome `#051766` 2025 CI symbol).
+  - **Korean Air Dark Blue (대한항공 다크 블루 / 2025 CI 단색 주조색)**: `#051766` (RGB `5, 23, 102`) — Used exclusively for the **2025 monochrome Sangmo Ribbon Line Taegeuk symbol**, the **`KOREAN AIR` / `KOREAN` / `대한항공` bespoke vector logotype**, and primary display typography.
+- **10% Accent & 3D Silk Motif**:
+  - **Korean Air Royal Sky Blue**: `#0064B5` / `#57BBEB` (with subtle `#E0112B` Korean Air Red reserved only as a background 3D silk ribbon thread, never inside the monochrome `#051766` 2025 CI symbol).
 
-### B. Precision Vector Geometry: 2025 Korean Air Sangmo Ribbon Line Taegeuk (`단색 선 태극`)
+### B. Exact Official 2025 Vector Geometry (`282 × 298` Sangmo Ribbon Line Taegeuk)
 - **Single-Color Calligraphic Ribbon Symbol (`#051766`)**:
-  - Inspired by *Sangmo Nori* (`풍물놀이 상모 리본`), the 2025 Taegeuk is rendered in **one seamless stroke of Korean Air Dark Blue (`#051766`)**—stripped of the old red/blue filled halves.
-  - The ribbon starts with an angled calligraphic brush terminal (`붓터치 느낌의 마무리`) on the upper-right perimeter (`~2 o'clock`), sweeps counter-clockwise over the top-left arc (`~12 o'clock -> ~9 o'clock`), bends smoothly into the central Taegeuk S-wave across `(100, 100)`, and sweeps clockwise around the bottom-right arc (`~3 o'clock -> ~6 o'clock`) to a tapered brush tip on the lower-left (`~8 o'clock`), leaving sleek **open negative-space junctions (`열린 연결점`)** on the left and right rims.
-- **3-Tier Flexible Lockup System**:
-  1. **Primary Brand Lockup**: `[2025 #051766 Sangmo Taegeuk]  KOREAN AIR` (and `대한항공` in Korean Air Sans).
-  2. **Aircraft Livery Lockup**: `[2025 #051766 Sangmo Taegeuk]  KOREAN` (featured on the Boeing 787-10 `HL8515` fuselage).
-  3. **Discreet Prestige Badge**: `[2025 #051766 Sangmo Taegeuk]` standalone symbol (tail fin, Prestige Suites 2.0 cabin, mobile app).
+  - Aspect ratio: `282 × 298` (`viewBox="0 0 282 298"`).
+  - Features razor-sharp crescent horn tips at upper-right (`~2 o'clock`) and lower-left (`~8 o'clock`), dramatic calligraphic swell across the deep central S-wave bellies, and crisp open negative-space channels.
+  - **Animation Recipe (Zero-Distortion Official Reveal)**:
+    - During `drawProgress ∈ [0, 0.96)`, reveal the exact official `<path>` through an SVG `<mask>` driven by a thick (`strokeWidth="84"`) centerline `strokeDashoffset` sweep tracing the ribbon flow.
+    - At `drawProgress >= 0.96`, drop the `<mask>` entirely so the resting brand frame displays the **100% unaltered official vector path**.
+- **3-Tier Official Vector Logotype System (Never Substitute System Fonts)**:
+  1. **Primary Lockup**: `[282×298 Sangmo Taegeuk]  KOREAN AIR` (exact Dalton Maag / Lippincott vector letterforms with open `K` stem junction and calligraphic terminal curves).
+  2. **Aircraft Livery Lockup**: `[282×298 Sangmo Taegeuk]  KOREAN` (applied across the forward metallic sky-blue fuselage of Boeing 787-10 `HL8515`, integrating cleanly behind the oval cabin windows).
+  3. **Hangul Lockup**: `[282×298 Sangmo Taegeuk]  대한항공` (exact Korean Air Sans / Sandoll Hangul glyph paths).
 - **Official 2025 Slogan**: **`Anywhere is Possible`** (`어디든 가능합니다`).
 
 ```tsx
@@ -49,30 +53,33 @@ export const KoreanAir2025SangmoMark: React.FC<{
   drawProgress?: number;
   color?: string;
 }> = ({ size = 120, drawProgress = 1, color = '#051766' }) => {
-  const totalLength = 660;
-  const dashOffset = totalLength * (1 - drawProgress);
-  const spinePath =
-    'M 156 40 C 138 20, 114 14, 90 16 C 48 20, 22 52, 24 90 C 26 126, 48 142, 72 130 C 88 122, 94 108, 100 100 C 106 92, 112 78, 128 70 C 152 58, 174 74, 176 110 C 178 148, 152 180, 110 184 C 86 186, 62 180, 44 160';
-  const calligraphicContour =
-    'M 163 46 C 159 37, 151 28, 141 20 C 122 8, 98 4, 76 8 C 36 15, 12 49, 14 91 C 16 134, 45 153, 76 139 C 93 131, 101 114, 108 105 C 115 96, 121 84, 133 78 C 150 70, 166 81, 167 110 C 168 143, 145 170, 109 174 C 87 176, 66 170, 50 153 C 44 147, 35 148, 37 154 C 41 163, 49 172, 59 180 C 78 192, 102 196, 124 192 C 164 185, 188 151, 186 109 C 184 66, 155 47, 124 61 C 107 69, 99 86, 92 95 C 85 104, 79 116, 67 122 C 50 130, 34 119, 33 90 C 32 57, 55 30, 91 26 C 113 24, 134 30, 150 47 C 156 53, 165 52, 163 46 Z';
+  const aspectWidth = (size * 282) / 298;
+  const isComplete = drawProgress >= 0.96;
+  const maskRibbonLength = 1040;
+  const maskDashOffset = maskRibbonLength * (1 - Math.min(1, drawProgress / 0.96));
 
   return (
-    <svg width={size} height={size} viewBox="0 0 200 200" fill="none">
-      <defs>
-        <clipPath id="kal2025-calligraphic-clip">
-          <path d={calligraphicContour} />
-        </clipPath>
-      </defs>
-      <g clipPath="url(#kal2025-calligraphic-clip)">
-        <path
-          d={spinePath}
-          stroke={color}
-          strokeWidth="30"
-          strokeLinecap="round"
-          strokeDasharray={totalLength}
-          strokeDashoffset={dashOffset}
-        />
-      </g>
+    <svg width={aspectWidth} height={size} viewBox="0 0 282 298" fill="none">
+      {!isComplete && (
+        <defs>
+          <mask id="kal2025-ribbon-mask" maskUnits="userSpaceOnUse" x="-20" y="-20" width="322" height="338">
+            <rect x="-20" y="-20" width="322" height="338" fill="#000000" />
+            <path
+              d="M 265 75 C 232 28, 184 12, 138 14 C 66 18, 14 78, 16 149 C 18 202, 58 228, 98 214 C 128 202, 136 174, 141 149 C 146 124, 154 96, 184 84 C 224 70, 264 96, 266 149 C 268 220, 216 280, 144 284 C 98 286, 50 270, 17 223"
+              stroke="#FFFFFF"
+              strokeWidth="84"
+              strokeLinecap="round"
+              strokeDasharray={maskRibbonLength}
+              strokeDashoffset={maskDashOffset}
+            />
+          </mask>
+        </defs>
+      )}
+      <path
+        d={KOREAN_AIR_2025_TAEGEUK_PATH}
+        fill={color}
+        mask={!isComplete ? 'url(#kal2025-ribbon-mask)' : undefined}
+      />
     </svg>
   );
 };
@@ -82,19 +89,14 @@ export const KoreanAir2025SangmoMark: React.FC<{
 
 ## 2. Four Master Logo Reveal Techniques
 
-### 1. Continuous Calligraphic Ribbon Drawing (`strokeDashoffset` + Variable-Width Clip)
-Trace the structural spine of a calligraphic ribbon logo (such as the 2025 Korean Air Sangmo Taegeuk) inside a variable-width `<clipPath>` contour so the brush stroke swells and tapers organically as it draws:
-- Set `strokeDasharray={totalLength}` on the spine path.
-- Interpolate `strokeDashoffset` from `totalLength` to `0` over 35–48 frames.
+### 1. Zero-Distortion Calligraphic Ribbon Mask (`<mask>` + Centerline `strokeDashoffset`)
+Reveal the **exact official closed-contour SVG path** through a generous centerline `<mask>` stroke so variable calligraphic swells and razor-sharp tips unfurl naturally, then remove the mask at completion.
 
-### 2. Symmetrical S-Curve Split Docking
-For rotational or multi-part emblems (wings, shields, dual arcs):
-- Upper element enters from `translate(-36px, -18px)` + `rotate(-18deg)`.
-- Lower element enters from `translate(36px, 18px)` + `rotate(18deg)`.
-- Both lock into the center on a crisp beat drop with a micro-compression spring (`damping: 14, stiffness: 160`).
+### 2. Per-Glyph Bespoke Logotype Stagger
+Split the official wordmark SVG into per-letter `<path>` elements (`K, O, R, E, A, N...`) and stagger each glyph's Y-translation (`18px -> 0px`) and opacity (`0 -> 1`) by 2–3 frames so the real corporate wordmark breathes into frame like a kinetic title card.
 
 ### 3. Radial Clip Reveal
-Unfurl a circular or ribbon mark using an SVG `<clipPath>` circle expanding from the center point with organic overshoot.
+Unfurl a circular or emblem mark using an SVG `<clipPath>` circle expanding from the center point with organic overshoot.
 
 ### 4. Surface Glint / Rim Light Sweep
 Sweep a 45-degree linear gradient highlight across the finished mark once it settles:
